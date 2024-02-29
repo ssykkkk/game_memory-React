@@ -1,0 +1,38 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.score {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.winMessage {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: green;
+  font-size: 30px;
+}
+.winMessage > button {
+    cursor: pointer;
+  border: 2px solid;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: aliceblue;
+  transition: .5s;
+}
+.winMessage > button:hover{
+    background-color: cadetblue;
+}
