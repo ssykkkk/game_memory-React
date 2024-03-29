@@ -10,7 +10,6 @@ const App = () => {
   const [matched, setMatched] = useState([]);
   const [score, setScore] = useState(0);
   const [gameWon, setGameWon] = useState(false);
-
   useEffect(() => {
     if (flipped.length === 2) {
       const [firstCard, secondCard] = flipped;
@@ -21,13 +20,13 @@ const App = () => {
           cards[secondCard].id,
         ]);
         setScore((prevScore) => prevScore + 1);
-        if (prevScore + 1 === cards.length / 2) { // Використано prevScore замість score
+        if (score + 1 === cards.length / 2) {
           setGameWon(true);
         }
       }
       setTimeout(() => setFlipped([]), 500);
     }
-  }, [flipped, cards, score]); // Додано score до масиву залежностей
+  }, [flipped, cards]);
 
   const handleCardClick = (index) => {
     if (
@@ -52,24 +51,24 @@ const App = () => {
     <div className={styles.wrap}>
       {gameWon ? (
         <div className={styles.winMessage}>
-          <p>Вітаємо! Ви виграли!</p>
-          <button onClick={restartGame}>Рестарт</button>
+          <p>Congratulations! You've won!</p>
+          <button onClick={restartGame}>Restart</button>
         </div>
       ) : (
         <>
-          <div className={styles.score}>Рахунок: {score}</div>
-          <div className={styles.cardContainer}>
-            {cards.map((card, index) => (
-              <Card
-                key={card.id} // Змінено key на card.id
-                card={card}
-                index={index}
-                isFlipped={flipped.includes(index) || matched.includes(card.id)}
-                isMatched={matched.includes(card.id)}
-                onCardClick={handleCardClick}
-              />
-            ))}
-          </div>
+      <div className={styles.score}>Score: {score}</div>
+        <div className={styles.cardContainer}>
+          {cards.map((card, index) => (
+            <Card
+              key={index}
+              card={card}
+              index={index}
+              isFlipped={flipped.includes(index) || matched.includes(card.id)}
+              isMatched={matched.includes(card.id)}
+              onCardClick={handleCardClick}
+            />
+          ))}
+        </div>
         </>
       )}
     </div>
